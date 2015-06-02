@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>GDG - Introduction to AngularJS by Aysegul Yonet</title>
 
-		<meta name="description" content="">
+		<meta name="description" content="Introduction to AngularJS by Aysegul Yonet for Google Developer Group Mountain View Meetup">
 		<meta name="author" content="Aysegul Yonet">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,16 +42,52 @@
 			<div class="slides">
 				<!-- Created By -->
 				<section>
-					<h1></h1>
+					<h1>Introduction to AngularJS</h1>
 					<h3></h3>
 					<p>
 						<small>Created by <a href="https://www.linkedin.com/in/aysegulyonet" target="_blank">Aysegul Yonet</a> / <a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a></small>
 					</p>
 				</section>
 				<!-- /Created By -->
+				
+				<section>
+					<!-- <h2></h2> -->
+					<ul>
+						<li>AngularJS Features</li>
+						<li>Getting started</li>
+						<li>Directives, Filters and Data Binding</li>
+						<li>Views, Controllers and Scope</li>
+						<li>Modules, routes and Factories</li>
+						<li>What's new in Angular 2</li>
+					</ul>
+					
+					<!-- <pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a> -->
+					<aside class="notes">
+						My aim is to show you how everything fit together. Hopefully by the end of this you will know what to use for what purpose and where to find it. 
+					</aside>
+					
+				</section>
 
 				<section>
-					<h2></h2>
+					<h2>Why Angular?</h2>
+					
+					<!-- <pre><code data-trim contenteditable>
+
+					</code></pre> -->
+					<!-- <a href="" target="_blank"></a> -->
+					<aside class="notes">
+						SPA, data binding, MVC, routing, history, testing, jqLite, templates, factories for code sharing, dynamicly injecting new features through dependency injection, directives, ViewModel, Validation... 
+
+						It is fully extensible and works well with other libraries. Every feature can be modified or replaced to suit your unique development workflow and feature needs
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>ng-app</h2>
 					
 					<pre><code data-trim contenteditable>
 
@@ -59,6 +95,197 @@
 					<a href="" target="_blank"></a>
 					<aside class="notes">
 						
+					</aside>
+					
+				</section>
+
+				<!-- Directives -->
+				<section>
+					<h2>Directives</h2>
+					<p>Angular Directives extends DOM behavior.</p>
+					<pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Built-in Directives</h2>
+					<ul>
+						<li>ng-repeat</li>
+						<li></li>
+						<li></li>
+						<li></li>
+						
+					</ul>
+					<pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+				<!-- /Directives -->
+
+				<!-- Filters -->
+				<section>
+					<h2>Filters</h2>
+					
+					<pre><code data-trim contenteditable>
+<input type="text" ng-model="countryName">
+<ul>
+	<li ng-repeat="country in countries | filter:countryName | orderBy:'name'">
+		{{country.name}}, {{country.code}}
+	</li>
+</ul>
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+				<!-- Filters -->
+
+				<!-- Controllers -->
+				<section>
+					<h2>Controllers</h2>
+					
+					<pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+				<section>
+					<h2>Scope</h2>
+					
+					<pre><code data-trim contenteditable>
+<div ng-controller="MainController as main">
+	<input type="text" ng-model="name" />
+	
+</div>
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						scope is available on the block where the controller is defined.
+					</aside>
+					
+				</section>
+				<!-- /Controllers -->
+
+
+				
+				<!-- Services -->
+				<section>
+					<h2>Services</h2>
+					
+					<pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+				<!-- /Services -->
+
+				
+
+				<!-- Angular Material -->
+				<section>
+					<h2><a href="" target="_blank">Angular Material</a></h2>
+					
+					<pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+
+				<!-- Angular 2 -->
+				<section>
+					<h2>Angular 2</h2>
+					<p>To use ES5 add:</p>
+					<pre><code data-trim contenteditable>
+<script src="https://code.angularjs.org/2.0.0-alpha.23/angular2.sfx.dev.js"></script>
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					Angular 2 is a work in progress, many things can and will change.
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Components</h2>
+					
+					<pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					You only have to bootstrap the root component. Whenever Angular sees another component, it knows how to find it. 
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>ng-model</h2>
+					
+					<pre><code data-trim contenteditable>
+import {Component, Template} from 'angular2/angular2';
+
+@Component ({
+	selector: "name"
+})
+
+@Template ({
+	inline:`
+		<div>
+			<input type="text" placeholder="Name" #name(keyup)>
+			<h1>Hello {{name.value}}</h1>
+		</div>
+})
+export class Name{}
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+				<!-- Angular 2 -->
+
+				<section>
+					<h2>Few new cool things</h2>
+					<ul>
+						<li>Custom (events) and [properties]</li>
+						<!-- ??? -->
+						<li>No more Scope.apply(knows about JS events)</li>
+						<li>Better error handling</li>
+						<li>Faster</li>
+					</ul>
+					<pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						No more curly braces for attribute values
+						Change detection will update on any other event you defined by using other libraries or plain JS. SetInterval will work fine.  
 					</aside>
 					
 				</section>

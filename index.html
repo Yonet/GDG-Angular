@@ -115,14 +115,14 @@
 						
 					</section>
 
-					<section data-background-video="videos/ngApp.mp4">
+					<!-- <section data-background-video="videos/ngApp.mp4">
 						<aside class="notes">
 
 							We usually give a name to our app and include more complex functionality with the use of controllers, directives and such. 
 
 						</aside>
 						
-					</section>
+					</section> -->
 				</section>
 				<!-- /ng-app nested -->
 
@@ -186,19 +186,22 @@ app.controller("MainController", function($scope){
 
 						<a href="http://jsfiddle.net/yonet3d/42y48ewm/11/" target="_blank">JSFiddle</a>
 						<aside class="notes">
+							We have attached the default values and functions to our scope but what is a scope. 
+
 							Everything you need to be available inyour html, you have to include it in your $scope object.
 							scope is available on the block where the controller is defined.
+							Everytime something changes in your scope, angular will recursively check values and update your view. 
 						</aside>
 						
 					</section>
-					<section data-background-video="videos/controller.mp4">
+					<!-- <section data-background-video="videos/controller.mp4">
 							<aside class="notes">
 
 								
 
 							</aside>
 							
-						</section>
+						</section> -->
 					</section>
 				<!-- /Controllers -->
 
@@ -216,6 +219,8 @@ app.controller("MainController", function($scope){
 					Directives let you invent new HTML syntax, specific to your application.
 
 					We have already seen some of the built in directives. 
+
+					The ngIf directive removes or recreates a portion of the DOM tree based on an {expression}
 						
 					</aside>
 					
@@ -233,6 +238,9 @@ app.directive('myDirective', [function(){
 		}
 	}
 }])
+						</code></pre>
+						<pre><code data-trim contenteditable>
+<my-directive></my-directive>
 						</code></pre>
 						<aside class="notes">
 					All you need to create your custom directive is to return a linking function that defines the behavior. 
@@ -277,6 +285,7 @@ app.directive('classy', [function(){
 						</code></pre>
 						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/6/" target="_blank">Example</a>
 					</section>
+
 					<section>
 						<h2>Using scope</h2>
 						<pre><code data-trim contenteditable>
@@ -302,7 +311,29 @@ app.directive('superwoman', [function(){
 						</code></pre>
 						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/14/" target="_blank">Example</a>
 						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/15/" target="_blank">A Better Way</a>
-					</section>		
+					</section>
+					<section>
+						<pre><code data-trim contenteditable>
+angular.module('App', [])
+.directive('graph', function() {
+
+	return {
+		restrict: 'E',
+		scope: {
+			data:   '=bindData', // bindings
+			width:  '@width',    // static value
+			color: '&color'    // expression
+		},
+		link: Graph
+	};
+
+	function Graph(scope, element, attrs) { // Graph definition...
+	};
+
+});
+						</code></pre>
+						<a href="http://jsfiddle.net/yonet3d/ckg9vdLq/2/" target="_blank">Example</a>
+					</section>
 				</section>
 				<!-- /Directives -->
 
@@ -370,6 +401,7 @@ app.factory('userFactory', function($http){
 	</li>
 </ul>
 					</code></pre>
+					<a href="http://jsfiddle.net/yonet3d/50fpkazx/2/" target="_blank">Example</a>
 					
 					<aside class="notes">
 						
@@ -401,7 +433,7 @@ angular.module('app')
 	}]);
 
 					</code></pre>
-						<p><a href="http://jsfiddle.net/yonet3d/eapkhezd/2/" target="_blank">Example</a></p>
+						<a href="http://jsfiddle.net/yonet3d/eapkhezd/2/" target="_blank">Example</a>
 					</section>
 				<!-- Filters -->
 
@@ -437,9 +469,10 @@ app.config(['$routeProvider',
 </li>
 					</code></pre>
 					<aside class="notes">
-						$route service is used for deep-linking URLs to controllers and views (HTML partials). It watches $location.url() and tries to map the path to an existing route definition.
+						Routes are used to map which path matches are linked to which controller. When you access a URL (by clicking on a link or putting in the URL), angular will first check to see if its defined and, if not, then it will delegate the event to a standard webpage view.
 
-						Requires the ngRoute module to be installed.
+
+					Other cools things that you can do is to define a url by using a variable in your scope. Here I have a users page. To define a specific user, I can create a new url for that user. 
 						
 					</aside>
 					
@@ -466,7 +499,7 @@ lastElement.scope();
 
 				<!-- Angular Material -->
 				<section>
-					<h2><a href="" target="_blank">Angular Material</a></h2>
+					<h2><a href="https://material.angularjs.org/latest/#/demo/material.components.button" target="_blank">Angular Material</a></h2>
 					
 					<pre><code data-trim contenteditable>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
@@ -529,10 +562,10 @@ lastElement.scope();
 				<!-- Angular 2 -->
 				<section>
 					<h2><a href="https://angular.io/" target="_blank">Angular 2</a></h2>
-					<p>To use ES5 add:</p>
+					<!-- <p>To use ES5 add:</p>
 					<pre><code data-trim contenteditable>
 <script src="https://code.angularjs.org/2.0.0-alpha.23/angular2.sfx.dev.js"></script>
-					</code></pre>
+					</code></pre> -->
 					
 					<aside class="notes">
 					Angular 2 is a work in progress, many things can and will change.

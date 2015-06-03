@@ -47,6 +47,10 @@
 					<p>
 						<small>Created by <a href="https://www.linkedin.com/in/aysegulyonet" target="_blank">Aysegul Yonet</a> / <a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a></small>
 					</p>
+					<aside class="notes">
+						
+						 
+					</aside>
 				</section>
 				<!-- /Created By -->
 				
@@ -57,7 +61,7 @@
 						<li>Getting started</li>
 						<li>Directives, Filters and Data Binding</li>
 						<li>Views, Controllers and Scope</li>
-						<li>Modules, routes and Factories</li>
+						<li>Routes and Factories</li>
 						<li>What's new in Angular 2</li>
 					</ul>
 					
@@ -66,7 +70,17 @@
 					</code></pre>
 					<a href="" target="_blank"></a> -->
 					<aside class="notes">
+						Angular works by separating application logic from data on the client-side
+
+						Controllers, Services and Models are used to glue all the logic and data operations together. 
+
+						 Controllers, Services and Models are used to glue all the logic and data operations together.
+
+						 data and logic are separated so this means that your data (the dynamic stuff), your HTML templates (the static stuff), and your logic (the controllers and binding markup) work together to make the application work.
+
 						My aim is to show you how everything fit together. Hopefully by the end of this you will know what to use for what purpose and where to find it. 
+
+
 					</aside>
 					
 				</section>
@@ -82,6 +96,8 @@
 						SPA, data binding, MVC, routing, history, testing, jqLite, templates, factories for code sharing, dynamicly injecting new features through dependency injection, directives, ViewModel, Validation... 
 
 						It is fully extensible and works well with other libraries. Every feature can be modified or replaced to suit your unique development workflow and feature needs
+
+						 Angular includes a wealth of essential features such as mobile gestures, animations, filtering, routing, data binding, security, internationalization, and beautiful UI components. It's extremely modular, lightweight, and easy to learn.
 					</aside>
 					
 				</section>
@@ -90,11 +106,42 @@
 					<h2>ng-app</h2>
 					
 					<pre><code data-trim contenteditable>
-
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+</head>
+<body ng-app>
+	<input type="text" ng-model="name"> 
+	<p>Hello {{name}}</p>
+</body>
 					</code></pre>
 					<a href="" target="_blank"></a>
 					<aside class="notes">
 						
+						Just adding ng-app directive anywhere in your html creates the most basic angular app. Now you can start using data bindings and templating that comes with angular. Of course this would be a very sad use of Angular. 
+
+						We usually give a name to our app and include more complex functionality with the use of controllers, directives and such. 
+
+					</aside>
+					
+				</section>
+
+				<section data-background-video="videos/ngApp.mp4"></section>
+
+				<section>
+					<h2>Modules</h2>
+					
+					<pre><code data-trim contenteditable>
+var app = angular.module("demoApp", ['ngMaterial']);
+app.controller(...);
+app.directive(...);
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					Modules are used to fully encapsulate all the angular code of your application into one entry point.
+
+					This code here will create a global module for your app where you can create routes, models, filters and directives. 
+
+					 The app variable is accessible throughout your application and the ['ngMaterial'] definition array defines all the other modules and dependencies that must be loaded prior to this module being activated.
 					</aside>
 					
 				</section>
@@ -116,10 +163,10 @@
 				<section>
 					<h2>Built-in Directives</h2>
 					<ul>
-						<li>ng-repeat</li>
-						<li></li>
-						<li></li>
-						<li></li>
+						<li><a href="" target="_blank">ng-repeat</a></li>
+						<li><a href="" target="_blank"></a></li>
+						<li><a href="" target="_blank"></a></li>
+						<li><a href="" target="_blank"></a></li>
 						
 					</ul>
 					<pre><code data-trim contenteditable>
@@ -216,6 +263,23 @@
 					
 				</section>
 
+				<section>
+					<h2>Summary</h2>
+					<ul>
+						<li><a href="" target="_blank"></a></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						
+					</ul>
+					
+					<!-- <a href="" target="_blank"></a> -->
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+
 				<!-- Angular 2 -->
 				<section>
 					<h2>Angular 2</h2>
@@ -234,7 +298,12 @@
 					<h2>Components</h2>
 					
 					<pre><code data-trim contenteditable>
+import {Component} from 'angular2/angular2';
 
+@Component ({
+	selector: "user", // Defines the <user></user> tag
+	injectables: [FavoritesService] //Gets the favorites data from  FavoritesService class
+})
 					</code></pre>
 					<a href="" target="_blank"></a>
 					<aside class="notes">
@@ -244,26 +313,156 @@
 				</section>
 
 				<section>
-					<h2>ng-model</h2>
+					<h2>View</h2>
 					
 					<pre><code data-trim contenteditable>
-import {Component, Template} from 'angular2/angular2';
+import {Component, View, For, If} from 'angular2/angular2';
 
 @Component ({
-	selector: "name"
+	selector: "user"
 })
 
-@Template ({
-	inline:`
+@View ({
+	template:`
+		<div>
+			<h1>Hello {{name.value}}</h1>
+		</div>
+	`,
+	directives: [For, If]
+})
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					on your view definition you can have an inline template or include a templateURL property instead and give the path to the html file.
+
+					You can also inject the other directives to the view here as the directives property. 
+
+					Don't forget to import your directives on top of your documents.
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Data Binding</h2>
+					
+					<pre><code data-trim contenteditable>
+import {Component, View} from 'angular2/angular2';
+
+@Component ({
+	selector: "user",
+})
+
+@View ({
+	template:`
 		<div>
 			<input type="text" placeholder="Name" #name(keyup)>
 			<h1>Hello {{name.value}}</h1>
 		</div>
+	`
 })
-export class Name{}
+//Component controller
+export class UserComponent{}
 					</code></pre>
 					<a href="" target="_blank"></a>
 					<aside class="notes">
+					The above import statement uses ES6 module syntax to import three symbols from the Angular module. The module will load at runtime.
+
+					Than we are defining a component.
+
+					A component consists of two parts, the component controller which is an ES6 class, and the decorators which tell Angular how to place the component into the page.
+
+					The @Component annotation defines the HTML tag for the component by specifying the component's CSS selector.
+
+					The @View annotation defines the HTML that represents the component. The component you wrote uses an inline template, but you can also have an external template. To use an external template, specify a templateUrl property and give it the path to the HTML file.
+
+					The component controller is the backing of the component's template. This component controller uses TypeScript class syntax.
+						
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Bootstraping</h2>
+					
+					<pre><code data-trim contenteditable>
+bootstrap(UserComponent);
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+
+					On the bottom of your main app file call the bootsrap function and give the root component as an argument. 
+
+					You only have to bootstrap the root component. Whenever Angular sees another component, it knows how to find it. 
+
+
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Bootstraping</h2>
+					
+					<pre><code data-trim contenteditable>
+<body>
+	<user></user>
+</body>
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					All you need to add to your html to start your app is your component tag as well as your file scripts.
+
+					Angular applications are a tree of nested components. You always begin with a top-level component. You add child components by including them in the parent's template.
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2><a href="https://angular.io/docs/js/latest/api/router/Router-class.html" target="_blank">Routers</a></h2>
+					
+					<pre><code data-trim contenteditable>
+<a router-link="user">link to user</a>
+@RouteConfig({
+  path: '/user', component: UserComponent, alias: 'user'
+});
+					</code></pre>
+					<aside class="notes">
+					The router is responsible for mapping URLs to components.
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>What can you do today to prepare for Angular 2</h2>
+					<ul>
+						<li><a href="" target="_blank">ES6</a></li>
+						<li><a href="" target="_blank">TypeScript</a></li>
+						<li><a href="" target="_blank"></a>Write modular Angular 1.x code</li>
+						<!-- <li><a href="" target="_blank"></a></li> -->
+					</ul>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					You can start using ES6 today.
+					TypeScript is not nesessary for Anular 2 but I think it is cool. Most of you Java developers might have a better time with it than using plain JavaScript. 
+
+					Most importantly write modular, good Angular 1.x code. This will allow make your transition more pleasant. You can start migrating your app slowly without breaking anything. 
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Angular2 Workshops and Resources</h2>
+					
+					<ul>
+						<li><a href="angular.io" target="_blank">Angular.io</a></li>
+						<li><a href="http://bit.ly/1F878vv" target="_blank">AngularU</a> - Save 20% "FriendOfAysegul"</li>
+						<li><a href="http://forwardjs.com/" target="_blank">Angular 2 Workshop at ForwardJS July 28th</a></li>
+						<li><a href="https://www.youtube.com/watch?t=151&v=HmWm21cCAXM" target="_blank">Angular 2 Screencast by Alex Eagle</a></li>
+					</ul>
+					<aside class="notes">
+					For more Angular 2 resources check here are some places to go. 
+					Of course Angular's new website has the api referece and tutorials. Angular team with their new additions are doing a much better job this time with documenting and creating a new user friendly environment. 
+					Angular U will be an amazing conference in June 22 to 25 2015 in San Francisco. All of the core team will be there and you can get a %20 discount.
 						
 					</aside>
 					
@@ -289,6 +488,35 @@ export class Name{}
 					</aside>
 					
 				</section>
+				<section>
+					<h2>Other Resources</h2>
+					
+					<ul>
+						<li><a href="https://angular-ui.github.io/" target="_blank">AngularUI</a></li>
+						<li><a href="https://material.angularjs.org/latest/#/" target="_blank">Angular Material</a></li>
+						<li><a href="https://egghead.io/" target="_blank">Egghead.io</a></li>
+						<li><a href="http://www.ng-newsletter.com/" target="_blank">ng-newsletter</a></li>
+						<li><a href="https://flipboard.com/@dwahlin/the-angularjs-magazine-f66o0fd8y" target="_blank">The AngularJS Magazine</a></li>
+						<li><a href="http://codecondo.com/angular-js-directives/" target="_blank">15 Directives to Extend Your Angular.js Apps</a></li>
+						<li><a href="https://builtwith.angularjs.org/" target="_blank">Built with Angular</a></li>
+						
+					</ul>
+					
+					<aside class="notes">
+					AngularUI- has util functions, angular implementation of Bootstrap, Directives to integrate Google Maps and much more useful goodness.
+					The Angular Material - project is an implementation of Material Design in Angular.js
+
+					Egghead io has an amazing video series for getting your team up to speed with AngularJS. 
+
+					ng-newsletter and AngularJS Magazine are both great for catching up with the latest and the greatest things about Angular. 
+
+					This last one is a recent blog post that highlights few cool directives you can use. 
+
+					Check out built with Angular website to get inspired and see who is using Angular in their projects. 
+					</aside>
+					
+				</section>
+				
 
 				<!-- The End -->
 				<section style="text-align: left;">

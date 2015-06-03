@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>GDG - Introduction to AngularJS by Aysegul Yonet</title>
+
+		<meta name="description" content="Introduction to AngularJS by Aysegul Yonet for Google Developer Group Mountain View Meetup">
+		<meta name="author" content="Aysegul Yonet">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<!-- Created By -->
+				<section>
+					<h1>Introduction to AngularJS</h1>
+					<h3></h3>
+					<p>
+						<small>Created by <a href="https://www.linkedin.com/in/aysegulyonet" target="_blank">Aysegul Yonet</a> / <a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a></small>
+					</p>
+					<aside class="notes">
+						
+						 
+					</aside>
+				</section>
+				<!-- /Created By -->
+
+					<section>
+					<h2>Why Angular?</h2>
+		
+					<aside class="notes">
+						Angular includes a wealth of essential features such as mobile gestures, animations, filtering, routing, data binding, security, internationalization, and beautiful UI components. It's extremely modular, lightweight, and easy to learn.
+
+						SPA, data binding, MVC, routing, history, testing, jqLite, templates, factories for code sharing, dynamicly injecting new features through dependency injection, directives, ViewModel, Validation... 
+
+						It is fully extensible and works well with other libraries. Every feature can be modified or replaced to suit your unique development workflow and feature needs
+						 
+					</aside>
+					
+				</section>
+				
+				<section>
+					<!-- <h2></h2> -->
+					<ul>
+						<li>AngularJS Features</li>
+						<li>Getting started</li>
+						<li>Views, Controllers and Scope</li>
+						<li>Directives, Filters </li>
+						<li>Services and Routes</li>
+						<li>What's new in Angular 2</li>
+					</ul>
+
+					<aside class="notes">
+						Angular works by separating application logic from data on the client-side
+
+						Controllers, Services and Models are used to glue all the logic and data operations together. 
+
+						data and logic are separated so this means that your data (the dynamic stuff), your HTML templates (the static stuff), and your logic (the controllers and binding markup) work together to make the application work.
+
+						My aim is to show you how everything fit together. Hopefully by the end of this you will know what to use for what purpose and where to find it. 
+
+
+					</aside>
+					
+				</section>
+
+				<!-- ng-app nested -->
+				<section>
+					<section>
+						<h2>ng-app</h2>
+						
+						<pre><code data-trim contenteditable>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.js"></script>
+<div ng-app>
+	<input type="text" ng-model="name"> 
+	<p>Hello {{name}}</p>
+</div>
+						</code></pre>
+						<a href="http://jsfiddle.net/yonet3d/42y48ewm/9/" target="_blank">JSFiddle</a>
+						<aside class="notes">
+							
+							Just adding ng-app directive anywhere in your html creates the most basic angular app. Now you can start using data bindings and templating that comes with angular. Of course this would be a very sad use of Angular. 
+
+							We usually give a name to our app and include more complex functionality with the use of controllers, directives and services. 
+
+						</aside>
+						
+					</section>
+
+					<section data-background-video="videos/ngApp.mp4">
+						<aside class="notes">
+
+							We usually give a name to our app and include more complex functionality with the use of controllers, directives and such. 
+
+						</aside>
+						
+					</section>
+				</section>
+				<!-- /ng-app nested -->
+
+				<section>
+					<h2>Modules</h2>
+					
+					<pre><code data-trim contenteditable>
+var myApp = angular.module("demoApp", ['ngMaterial']);
+myApp.controller(...);
+myApp.directive(...);
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					Modules are used to fully encapsulate all the angular code of your application into one entry point.
+
+					This code here will create a global module for your app where you can create routes, models, filters and directives. 
+
+					 The app variable is accessible throughout your application and the ['ngMaterial'] definition array defines all the other modules and dependencies that must be loaded prior to this module being activated.
+					</aside>
+					
+				</section>
+
+				<!-- Controllers -->
+				<section>
+					<h2>Controllers</h2>
+					<ul>
+						<li>Set up the initial state of the $scope object.</li>
+						<li>Add behavior to the $scope object.</li>
+					</ul>
+					
+					<pre><code data-trim contenteditable>
+app.controller("MainController", function($scope){
+	$scope.meaningOfLife = 42;
+	$scope.changeMeaning = function(newMeaning){
+		$scope.meaning = "The meaning of life is " + newMeaning;
+	};	
+})
+					</code></pre>
+					<!-- <pre><code data-trim contenteditable>
+<div ng-controller="MainController as main">
+	<input type="text" ng-model="meaningOfLife" placeholder="Meaning of Life"/>
+	<button ng-click="changeMeaning(meaningOfLife)">Change</button>
+</div>
+					</code></pre> -->
+					
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+				<section>
+					<section>
+						<h2>Scope</h2>
+						<p>Scope is the glue between application controller and the view. </p>
+						<pre><code data-trim contenteditable>
+<div ng-controller="MainController as main">
+	<input type="text" ng-model="meaningOfLife" placeholder="Meaning of Life"/>
+	<button ng-click="changeMeaning(meaningOfLife)">Change</button>
+</div>
+						</code></pre>
+
+						<a href="http://jsfiddle.net/yonet3d/42y48ewm/11/" target="_blank">JSFiddle</a>
+						<aside class="notes">
+							Everything you need to be available inyour html, you have to include it in your $scope object.
+							scope is available on the block where the controller is defined.
+						</aside>
+						
+					</section>
+					<section data-background-video="videos/controller.mp4">
+							<aside class="notes">
+
+								
+
+							</aside>
+							
+						</section>
+					</section>
+				<!-- /Controllers -->
+
+				<!-- Directives -->
+				<section>
+					<h2><a href="https://docs.angularjs.org/api/ng/directive" target="_blank"> Directives</a></h2>
+					<p>Angular Directives extends DOM behavior.</p>
+					<ul>
+						<li class="fragment"><a href="" target="_blank">ng-repeat</a></li>
+						<li class="fragment"><a href="" target="_blank">ng-if</a></li>
+						<li class="fragment"><a href="" target="_blank">ng-app</a></li>
+					</ul>
+
+					<aside class="notes">
+					Directives let you invent new HTML syntax, specific to your application.
+
+					We have already seen some of the built in directives. 
+						
+					</aside>
+					
+				</section>
+
+				<section>
+						<h2>Creating Custom Directives</h2>
+						
+						<pre><code data-trim contenteditable>
+var app =  angular.module('app', [])
+app.directive('myDirective', [function(){
+	return {
+		link: function(scope, element, attrs) {
+			//Do something here.
+		}
+	}
+}])
+						</code></pre>
+						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/2/" target="_blank">Example</a>
+						<aside class="notes">
+					All you need to create your custom directive is to return a linking function that defines the behavior. 
+
+					Linking function has access to:scope object, element, which is is the jqLite-wrapped element that this directive matches. and attributes: is a hash object with key-value pairs of normalized attribute names and their corresponding attribute values.
+						
+					</aside>
+					
+					<section>
+						<h2>Basic behavior using element</h2>
+						<pre><code data-trim contenteditable>
+
+app.directive('superwoman', [function(){
+	return {
+		restrict: "E",
+		link: function(scope, element, attrs) {
+			element.bind('mouseenter', function(){
+				alert("I'm busy saving the world. Come back later.")
+			})
+		}
+	}
+}])
+						</code></pre>
+						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/2/" target="_blank">Example</a>
+					</section>
+					<section>
+						<h2>Using attrs</h2>
+						<pre><code data-trim contenteditable>
+
+app.directive('classy', [function(){
+	var link = function(scope, element, attrs) {
+		element.bind('mouseenter', function(){
+			element.addClass(attrs.classy);
+		})
+	}
+	return {
+		restrict:"A",
+		link: link
+	}
+}])
+						</code></pre>
+						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/6/" target="_blank">Example</a>
+					</section>
+					<section>
+						<h2>Using scope</h2>
+						<pre><code data-trim contenteditable>
+
+app.controller('SuperController', ['$scope', function($scope){
+	$scope.totalSuperwomen = 20;
+	$scope.addOne = function() {
+		$scope.totalSuperwomen++;
+	}
+}])
+
+app.directive('superwoman', [function(){
+	return {
+		restrict: "E",
+		link: function(scope, element, attrs) {
+			element.bind('mouseenter', function(){
+				scope.addOne();
+				scope.$apply();
+			})
+		}
+	}
+}])
+						</code></pre>
+						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/14/" target="_blank">Example</a>
+						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/15/" target="_blank">A Better Way</a>
+					</section>		
+				</section>
+				<!-- /Directives -->
+
+
+
+				<!-- Services -->
+				<section>
+					<h2>Services</h2>
+					<p>Reusable business logic independant of views.</p>
+					<pre><code data-trim contenteditable>
+// Simple GET request example :
+$http.get('/someUrl').
+  success(function(data, status, headers, config) {
+	// this callback will be called asynchronously
+	// when the response is available
+  }).
+  error(function(data, status, headers, config) {
+	// called asynchronously if an error occurs
+	// or server returns response with an error status.
+});
+					</code></pre>
+					<aside class="notes">
+					Angular services are:
+
+					Lazily instantiated – Angular only instantiates a service when an application component depends on it.
+					Singletons – Each component dependent on a service gets a reference to the single instance generated by the service factory.
+
+					The $http service is a function which takes a single argument — a configuration object — that is used to generate an HTTP request and returns a promise with two $http specific methods: success and error.
+					</aside>
+					
+				</section>
+				<section>
+				<pre><code data-trim contenteditable>
+app.controller("MainController", function($scope, userService){
+	$scope.users = userService.getUsers();
+});
+app.factory('userFactory', function($http){
+	var users = [];
+	$http.get('/someUrl').success(function(data){
+		users = data.users;
+	})
+	var getUsers = function(){
+		return users;
+	}
+	//... 
+	return {
+		getUsers: getUsers,
+		//... 
+	}
+})
+					</code></pre>
+					<a href="http://jsfiddle.net/yonet3d/16tajygk/10/" target="_blank">JSFiddle</a>
+				</section>
+				<!-- /Services -->
+
+				<!-- Filters -->
+				<section>
+					<h2><a href="https://docs.angularjs.org/api/ng/filter" target="_blank">Filters</a></h2>
+					<p>Filters are used for formatting data displayed to the user.</p>
+					<pre><code data-trim contenteditable>
+<input type="text" ng-model="countryName">
+<ul>
+	<li ng-repeat="country in countries | filter:countryName | orderBy:'name'">
+		{{country.name}}, {{country.code}}
+	</li>
+</ul>
+					</code></pre>
+					
+					<aside class="notes">
+						
+					</aside>
+					
+				</section>
+				<section>
+						<h2>Custom Filters</h2> <!--data-trim-->
+						<p>You can create your own to do anything.</p>
+						<pre><code  contenteditable> 
+
+angular.module('app')
+	.filter('numberFormat', [function () {
+		return function (number) {
+			if (number !== undefined) {
+				var abs = Math.abs(number);
+				if (abs >= Math.pow(10,12)) {//trillion
+					number =  (number / Math.pow(10, 12)).toFixed(1)+ 't';
+				} else if (abs < Math.pow(10,12) && abs >= Math.pow(10, 9)) {//billion
+					number =  (number / Math.pow(10, 9)).toFixed(1)+ 'b';
+				} else if (abs < Math.pow(10, 9) && abs >= Math.pow(10, 6)) {//million
+					number =  (number / Math.pow(10, 6)).toFixed(1)+ 'm';
+				} else if (abs < Math.pow(10, 6) && abs >= Math.pow(10, 3)) {//thousand
+					number =  (number / Math.pow(10,3)).toFixed(1)+ 'k';
+				}
+			}
+			return number;
+		};
+	}]);
+
+					</code></pre>
+						<p><a href="http://jsfiddle.net/yonet3d/eapkhezd/2/" target="_blank">Example</a></p>
+					</section>
+				<!-- Filters -->
+
+				<!-- Services -->
+				<section>
+					<h2>Routing</h2>
+					<pre><code data-trim contenteditable>
+<script src="bower_components/angular-route/angular-route.js"></script>
+					</code></pre>
+					<pre><code data-trim contenteditable>
+var app = angular.module('demoApp', [
+	'ngRoute'
+]);
+app.config(['$routeProvider',
+	function($routeProvider) {
+		$routeProvider.
+			when('/', {
+				templateUrl: 'partials/home.html',
+				controller: 'HomeController'
+			}).
+			when('/users/:userId', {
+				templateUrl: 'partials/user-detail.html',
+				controller: 'UserDetailController'
+			}).
+			otherwise({
+				redirectTo: '/'
+			});
+	}]);
+					</code></pre>
+					<pre><code data-trim contenteditable>
+<li ng-repeat="user in users">
+	<a href="#/users/{{user.id}}"><img ng-src="{{user.imageUrl}}"></a>
+</li>
+					</code></pre>
+					<aside class="notes">
+						$route service is used for deep-linking URLs to controllers and views (HTML partials). It watches $location.url() and tries to map the path to an existing route definition.
+
+						Requires the ngRoute module to be installed.
+						
+					</aside>
+					
+				</section>
+				<!-- /Services -->
+
+				<section>
+					<h2>Debugging</h2>
+					<p>Chrome developer tools for AngularJS</p>
+					<ul>
+						<li><a href="https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk?hl=en">Angular Batarang</a></li>
+						<li><a href="https://chrome.google.com/webstore/detail/ng-inspector-for-angularj/aadgmnobpdmgmigaicncghmmoeflnamj?hl=en">Ng-inspector</a></li>
+					</ul>
+					<p>On your console:</p>
+					<pre><code data-trim contenteditable>
+//Gives you the last selected element on your html
+var lastElement = angular.element($0);
+//Gives you what is in your scope(functions, variables...)
+lastElement.scope();
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<!-- Angular Material -->
+				<section>
+					<h2><a href="" target="_blank">Angular Material</a></h2>
+					
+					<pre><code data-trim contenteditable>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+					</code></pre>
+					<pre><code data-trim contenteditable>
+<md-toolbar layout="row">
+	<md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button"></md-button>
+</md-toolbar>
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					You have to include the css and angular-aria as well as material. 
+					Once you do that you can start using material directives that comes with built in animations and functionalities.
+						
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2><a href="" target="_blank">Performance</a></h2>
+					<ul>
+						<li><a href="https://www.youtube.com/watch?v=wbcJfg-d5nI&index=16&list=PLOETEcp3DkCoNnlhE-7fovYvqwVPrRiY7" target="_blank">Watch for watchers</a></li>
+						<li><a href="" target="_blank"></a>Use Bind Once.</li>
+						
+					</ul>
+					<pre><code data-trim contenteditable>
+<ul>  
+	<li ng-repeat="item in ::items">{{item}}</li>
+</ul>
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					watch for watchers. 
+					Use one time binding. 
+						
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Now you know</h2>
+					<ul>
+						<li class="fragment">Creating your Angular modules.</li>
+						<li class="fragment">Binding your data to your views.</li>
+						<li class="fragment">Using services to organize and share code across your app.</li>
+						<li class="fragment">Creating your own directives and using built in ones.</li>
+						<li class="fragment">Using and creating filters.</li>
+						<li class="fragment">Using routing.</li>
+					</ul>
+					
+					<!-- <a href="" target="_blank"></a> -->
+					<aside class="notes">
+					This is more than I knew about when I created my first app. There is so much that you can build so fast with this information. I recommend you go and try building something simple that would implement these concepts before diving any deeper. You would be surprised how fast you get things done using Angular. 
+					</aside>
+					
+				</section>
+
+				<!-- Angular 2 -->
+				<section>
+					<h2>Angular 2</h2>
+					<p>To use ES5 add:</p>
+					<pre><code data-trim contenteditable>
+<script src="https://code.angularjs.org/2.0.0-alpha.23/angular2.sfx.dev.js"></script>
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					Angular 2 is a work in progress, many things can and will change.
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Components</h2>
+					
+					<pre><code data-trim contenteditable>
+import {Component} from 'angular2/angular2';
+
+@Component ({
+	selector: "user", // Defines the <user></user> tag
+	injectables: [FavoritesService] //Gets the favorites data from  FavoritesService class
+})
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					You only have to bootstrap the root component. Whenever Angular sees another component, it knows how to find it. 
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>View</h2>
+					
+					<pre><code data-trim contenteditable>
+import {Component, View, For, If} from 'angular2/angular2';
+
+@Component ({
+	selector: "user"
+})
+
+@View ({
+	template:`
+		<div>
+			<h1>Hello {{name.value}}</h1>
+		</div>
+	`,
+	directives: [For, If]
+})
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					on your view definition you can have an inline template or include a templateURL property instead and give the path to the html file.
+
+					You can also inject the other directives to the view here as the directives property. 
+
+					Don't forget to import your directives on top of your documents.
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Data Binding</h2>
+					
+					<pre><code data-trim contenteditable>
+import {Component, View} from 'angular2/angular2';
+
+@Component ({
+	selector: "user",
+})
+
+@View ({
+	template:`
+		<div>
+			<input type="text" placeholder="Name" #name(keyup)>
+			<h1>Hello {{name.value}}</h1>
+		</div>
+	`
+})
+//Component controller
+export class UserComponent{}
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					The above import statement uses ES6 module syntax to import three symbols from the Angular module. The module will load at runtime.
+
+					Than we are defining a component.
+
+					A component consists of two parts, the component controller which is an ES6 class, and the decorators which tell Angular how to place the component into the page.
+
+					The @Component annotation defines the HTML tag for the component by specifying the component's CSS selector.
+
+					The @View annotation defines the HTML that represents the component. The component you wrote uses an inline template, but you can also have an external template. To use an external template, specify a templateUrl property and give it the path to the HTML file.
+
+					The component controller is the backing of the component's template. This component controller uses TypeScript class syntax.
+						
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Bootstraping</h2>
+					
+					<pre><code data-trim contenteditable>
+bootstrap(UserComponent);
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+
+					On the bottom of your main app file call the bootsrap function and give the root component as an argument. 
+
+					You only have to bootstrap the root component. Whenever Angular sees another component, it knows how to find it. 
+
+
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Bootstraping</h2>
+					
+					<pre><code data-trim contenteditable>
+<body>
+	<user></user>
+</body>
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					All you need to add to your html to start your app is your component tag as well as your file scripts.
+
+					Angular applications are a tree of nested components. You always begin with a top-level component. You add child components by including them in the parent's template.
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2><a href="https://angular.io/docs/js/latest/api/router/Router-class.html" target="_blank">Routers</a></h2>
+					
+					<pre><code data-trim contenteditable>
+<a router-link="user">link to user</a>
+@RouteConfig({
+	path: '/user', component: UserComponent, alias: 'user'
+});
+					</code></pre>
+					<aside class="notes">
+					The router is responsible for mapping URLs to components.
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>What can you do today to prepare for Angular 2</h2>
+					<ul>
+						<li><a href="" target="_blank">ES6</a></li>
+						<li><a href="" target="_blank">TypeScript</a></li>
+						<li><a href="" target="_blank"></a>Write modular Angular 1.x code</li>
+						<!-- <li><a href="" target="_blank"></a></li> -->
+					</ul>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+					You can start using ES6 today.
+					TypeScript is not nesessary for Anular 2 but I think it is cool. Most of you Java developers might have a better time with it than using plain JavaScript. 
+
+					Most importantly write modular, good Angular 1.x code. This will allow make your transition more pleasant. You can start migrating your app slowly without breaking anything. 
+					</aside>
+					
+				</section>
+
+				<section>
+					<h2>Angular2 Workshops and Resources</h2>
+					
+					<ul>
+						<li><a href="angular.io" target="_blank">Angular.io</a></li>
+						<li><a href="http://bit.ly/1F878vv" target="_blank">AngularU</a> - Save 20% "FriendOfAysegul"</li>
+						<li><a href="http://forwardjs.com/" target="_blank">Angular 2 Workshop at ForwardJS July 28th</a></li>
+						<li><a href="https://www.youtube.com/watch?t=151&v=HmWm21cCAXM" target="_blank">Angular 2 Screencast by Alex Eagle</a></li>
+					</ul>
+					<aside class="notes">
+					For more Angular 2 resources check here are some places to go. 
+					Of course Angular's new website has the api referece and tutorials. Angular team with their new additions are doing a much better job this time with documenting and creating a new user friendly environment. 
+					Angular U will be an amazing conference in June 22 to 25 2015 in San Francisco. All of the core team will be there and you can get a %20 discount.
+						
+					</aside>
+					
+				</section>
+				<!-- Angular 2 -->
+
+				<section>
+					<h2>Few new cool things</h2>
+					<ul>
+						<li>Custom (events) and [properties]</li>
+						<!-- ??? -->
+						<li>No more Scope.apply(knows about JS events)</li>
+						<li>Better error handling</li>
+						<li>Faster</li>
+					</ul>
+					<pre><code data-trim contenteditable>
+
+					</code></pre>
+					<a href="" target="_blank"></a>
+					<aside class="notes">
+						No more curly braces for attribute values
+						Change detection will update on any other event you defined by using other libraries or plain JS. SetInterval will work fine.  
+					</aside>
+					
+				</section>
+				<section>
+					<h2>Other Resources</h2>
+					
+					<ul>
+						<li class="fragment"><a href="https://angular-ui.github.io/" target="_blank">AngularUI</a></li>
+						<li class="fragment"><a href="https://material.angularjs.org/latest/#/" target="_blank">Angular Material</a></li>
+						<!-- <li class="fragment"><a href="https://chrome.google.com/webstore/detail/angularjs-batarang-stable/niopocochgahfkiccpjmmpchncjoapek?hl=en-US" target="_blank">AngularJS Batarang</a>, <a href="http://ng-inspector.org/" target="_blank">ng-inspector</a></li> -->
+						<li class="fragment"><a href="https://egghead.io/" target="_blank">Egghead.io</a></li>
+						<li class="fragment"><a href="http://www.ng-newsletter.com/" target="_blank">ng-newsletter</a></li>
+						<li class="fragment"><a href="https://flipboard.com/@dwahlin/the-angularjs-magazine-f66o0fd8y" target="_blank">The AngularJS Magazine</a></li>
+						<li class="fragment"><a href="http://codecondo.com/angular-js-directives/" target="_blank">15 Directives to Extend Your Angular.js Apps</a></li>
+						<li class="fragment"><a href="https://builtwith.angularjs.org/" target="_blank">Built with Angular</a></li>
+						
+						
+						
+					</ul>
+					
+					<aside class="notes">
+					AngularUI- has util functions, angular implementation of Bootstrap, Directives to integrate Google Maps and much more useful goodness.
+					The Angular Material - project is an implementation of Material Design in Angular.js
+
+					Egghead io has an amazing video series for getting your team up to speed with AngularJS. 
+
+					ng-newsletter and AngularJS Magazine are both great for catching up with the latest and the greatest things about Angular. 
+
+					This last one is a recent blog post that highlights few cool directives you can use. 
+
+					Check out built with Angular website to get inspired and see who is using Angular in their projects. 
+					</aside>
+					
+				</section>
+				
+
+				<!-- The End -->
+				<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+						<a href="" target="_blank">Slides</a><br>
+						<a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a>
+					</p>
+				</section>
+				<!-- /The End -->
+
+
+					<!-- <section id="fragments">
+						<h2>Fragments</h2>
+						<p>Hit the next arrow...</p>
+						<p class="fragment">... to step through ...</p>
+						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+
+						<aside class="notes">
+							This slide has fragments which are also stepped through in the notes window.
+						</aside>
+					</section> -->
+					<!-- <section>
+						<h2>Fragment Styles</h2>
+						<p>There's different types of fragments, like:</p>
+						<p class="fragment grow">grow</p>
+						<p class="fragment shrink">shrink</p>
+						<p class="fragment fade-out">fade-out</p>
+						<p class="fragment current-visible">current-visible</p>
+						<p class="fragment highlight-red">highlight-red</p>
+						<p class="fragment highlight-blue">highlight-blue</p>
+					</section> -->
+
+				<!-- <section id="transitions">
+					<h2>Transition Styles</h2>
+					<p>
+						You can select from different transitions, like: <br>
+						<a href="?transition=none#/transitions">None</a> -
+						<a href="?transition=fade#/transitions">Fade</a> -
+						<a href="?transition=slide#/transitions">Slide</a> -
+						<a href="?transition=convex#/transitions">Convex</a> -
+						<a href="?transition=concave#/transitions">Concave</a> -
+						<a href="?transition=zoom#/transitions">Zoom</a>
+					</p>
+				</section> -->
+
+				
+
+				<!-- <section>
+					<section data-background="#dddddd">
+						<h2>Slide Backgrounds</h2>
+						<p>
+							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
+						</p>
+						<a href="#" class="navigate-down">
+							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
+						<h2>Image Backgrounds</h2>
+						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
+					</section>
+					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
+						<h2>Tiled Backgrounds</h2>
+						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
+					</section>
+					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
+						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+							<h2>Video Backgrounds</h2>
+							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
+						</div>
+					</section>
+					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
+						<h2>... and GIFs!</h2>
+					</section>
+				</section> -->
+
+
+				
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

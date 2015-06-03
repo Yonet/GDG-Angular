@@ -42,11 +42,13 @@
 			<div class="slides">
 				<!-- Created By -->
 				<section>
-					<h1>Introduction to AngularJS</h1>
+					<h2>Introduction to AngularJS</h2>
 					<h3></h3>
 					<p>
 						<small>Created by <a href="https://www.linkedin.com/in/aysegulyonet" target="_blank">Aysegul Yonet</a> / <a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a></small>
+						
 					</p>
+					<p>Slides:<a href="http://bit.ly/GDG-angular-slides" target="_blank">bit.ly/GDG-angular-slides</a></p>
 					<aside class="notes">
 						
 						 
@@ -60,8 +62,6 @@
 					<aside class="notes">
 						Angular includes a wealth of essential features such as mobile gestures, animations, filtering, routing, data binding, security, internationalization, and beautiful UI components. It's extremely modular, lightweight, and easy to learn.
 
-						SPA, data binding, MVC, routing, history, testing, jqLite, templates, factories for code sharing, dynamicly injecting new features through dependency injection, directives, ViewModel, Validation... 
-
 						It is fully extensible and works well with other libraries. Every feature can be modified or replaced to suit your unique development workflow and feature needs
 						 
 					</aside>
@@ -71,16 +71,16 @@
 				<section>
 					<!-- <h2></h2> -->
 					<ul>
-						<li>AngularJS Features</li>
-						<li>Getting started</li>
-						<li>Views, Controllers and Scope</li>
-						<li>Directives, Filters </li>
-						<li>Services and Routes</li>
-						<li>What's new in Angular 2</li>
+						<li class="fragment">AngularJS Features</li>
+						<li class="fragment">Getting started</li>
+						<li class="fragment">Views, Controllers and Scope</li>
+						<li class="fragment">Directives, Filters</li>
+						<li class="fragment">Services and Routes</li>
+						<li class="fragment">What's new in Angular 2</li>
 					</ul>
 
 					<aside class="notes">
-						Angular works by separating application logic from data on the client-side
+						Angular works by separating application logic from data on the client-side.
 
 						Controllers, Services and Models are used to glue all the logic and data operations together. 
 
@@ -109,9 +109,7 @@
 						<a href="http://jsfiddle.net/yonet3d/42y48ewm/9/" target="_blank">JSFiddle</a>
 						<aside class="notes">
 							
-							Just adding ng-app directive anywhere in your html creates the most basic angular app. Now you can start using data bindings and templating that comes with angular. Of course this would be a very sad use of Angular. 
-
-							We usually give a name to our app and include more complex functionality with the use of controllers, directives and services. 
+							Just adding ng-app directive anywhere in your html creates the most basic angular app. Now you can start using data bindings and templating that comes with angular. 
 
 						</aside>
 						
@@ -136,13 +134,13 @@ var myApp = angular.module("demoApp", ['ngMaterial']);
 myApp.controller(...);
 myApp.directive(...);
 					</code></pre>
-					<a href="" target="_blank"></a>
+					
 					<aside class="notes">
 					Modules are used to fully encapsulate all the angular code of your application into one entry point.
 
-					This code here will create a global module for your app where you can create routes, models, filters and directives. 
+					This code here will create a global module called demoApp and assign it to the myApp variable. I have also included ngMaterial module in my definition array, ['ngMaterial']. Definition array defines all the other modules and dependencies that must be loaded prior to this module being activated. 
 
-					 The app variable is accessible throughout your application and the ['ngMaterial'] definition array defines all the other modules and dependencies that must be loaded prior to this module being activated.
+					 The myApp variable is accessible throughout your application and you can use it to define your directives, controllers and other modules. 
 					</aside>
 					
 				</section>
@@ -236,13 +234,13 @@ app.directive('myDirective', [function(){
 	}
 }])
 						</code></pre>
-						<a href="http://jsfiddle.net/yonet3d/2pk4c2eo/2/" target="_blank">Example</a>
 						<aside class="notes">
 					All you need to create your custom directive is to return a linking function that defines the behavior. 
 
 					Linking function has access to:scope object, element, which is is the jqLite-wrapped element that this directive matches. and attributes: is a hash object with key-value pairs of normalized attribute names and their corresponding attribute values.
 						
 					</aside>
+				</section>
 					
 					<section>
 						<h2>Basic behavior using element</h2>
@@ -330,7 +328,7 @@ $http.get('/someUrl').
 					Angular services are:
 
 					Lazily instantiated – Angular only instantiates a service when an application component depends on it.
-					Singletons – Each component dependent on a service gets a reference to the single instance generated by the service factory.
+					Services are Singletons – Each component dependent on a service gets a reference to the single instance generated by the service factory. 
 
 					The $http service is a function which takes a single argument — a configuration object — that is used to generate an HTTP request and returns a promise with two $http specific methods: success and error.
 					</aside>
@@ -530,12 +528,12 @@ lastElement.scope();
 
 				<!-- Angular 2 -->
 				<section>
-					<h2>Angular 2</h2>
+					<h2><a href="https://angular.io/" target="_blank">Angular 2</a></h2>
 					<p>To use ES5 add:</p>
 					<pre><code data-trim contenteditable>
 <script src="https://code.angularjs.org/2.0.0-alpha.23/angular2.sfx.dev.js"></script>
 					</code></pre>
-					<a href="" target="_blank"></a>
+					
 					<aside class="notes">
 					Angular 2 is a work in progress, many things can and will change.
 					</aside>
@@ -555,7 +553,8 @@ import {Component} from 'angular2/angular2';
 					</code></pre>
 					<a href="" target="_blank"></a>
 					<aside class="notes">
-					You only have to bootstrap the root component. Whenever Angular sees another component, it knows how to find it. 
+					The @Component annotation defines the HTML tag for the component by specifying the component's CSS selector.
+					
 					</aside>
 					
 				</section>
@@ -582,7 +581,7 @@ import {Component, View, For, If} from 'angular2/angular2';
 					</code></pre>
 					<a href="" target="_blank"></a>
 					<aside class="notes">
-					on your view definition you can have an inline template or include a templateURL property instead and give the path to the html file.
+					The @View annotation defines the HTML that represents the component. The component you wrote uses an inline template, but you can also have an external template. To use an external template, specify a templateUrl property and give it the path to the HTML file.
 
 					You can also inject the other directives to the view here as the directives property. 
 
@@ -610,19 +609,13 @@ import {Component, View} from 'angular2/angular2';
 	`
 })
 //Component controller
-export class UserComponent{}
+export class UserComponent{
+	this.user = 'me';
+}
 					</code></pre>
 					<a href="" target="_blank"></a>
 					<aside class="notes">
-					The above import statement uses ES6 module syntax to import three symbols from the Angular module. The module will load at runtime.
 
-					Than we are defining a component.
-
-					A component consists of two parts, the component controller which is an ES6 class, and the decorators which tell Angular how to place the component into the page.
-
-					The @Component annotation defines the HTML tag for the component by specifying the component's CSS selector.
-
-					The @View annotation defines the HTML that represents the component. The component you wrote uses an inline template, but you can also have an external template. To use an external template, specify a templateUrl property and give it the path to the HTML file.
 
 					The component controller is the backing of the component's template. This component controller uses TypeScript class syntax.
 						
@@ -671,7 +664,8 @@ bootstrap(UserComponent);
 					<pre><code data-trim contenteditable>
 <a router-link="user">link to user</a>
 @RouteConfig({
-	path: '/user', component: UserComponent, alias: 'user'
+	path: '/user', 
+	component: UserComponent
 });
 					</code></pre>
 					<aside class="notes">
@@ -686,7 +680,6 @@ bootstrap(UserComponent);
 						<li><a href="" target="_blank">ES6</a></li>
 						<li><a href="" target="_blank">TypeScript</a></li>
 						<li><a href="" target="_blank"></a>Write modular Angular 1.x code</li>
-						<!-- <li><a href="" target="_blank"></a></li> -->
 					</ul>
 					<a href="" target="_blank"></a>
 					<aside class="notes">
@@ -726,10 +719,7 @@ bootstrap(UserComponent);
 						<li>Better error handling</li>
 						<li>Faster</li>
 					</ul>
-					<pre><code data-trim contenteditable>
-
-					</code></pre>
-					<a href="" target="_blank"></a>
+					
 					<aside class="notes">
 						No more curly braces for attribute values
 						Change detection will update on any other event you defined by using other libraries or plain JS. SetInterval will work fine.  
@@ -773,80 +763,11 @@ bootstrap(UserComponent);
 				<section style="text-align: left;">
 					<h1>THE END</h1>
 					<p>
-						<a href="" target="_blank">Slides</a><br>
+						<a href="http://bit.ly/GDG-angular-slides" target="_blank">bit.ly/GDG-angular-slides</a><br>
 						<a href="http://twitter.com/AysegulYonet" target="_blank">@AysegulYonet</a>
 					</p>
 				</section>
 				<!-- /The End -->
-
-
-					<!-- <section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section> -->
-					<!-- <section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section> -->
-
-				<!-- <section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
-					</p>
-				</section> -->
-
-				
-
-				<!-- <section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section> -->
-
-
-				
 
 			</div>
 
